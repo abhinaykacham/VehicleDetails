@@ -11,5 +11,16 @@ public class VehicleDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_details);
+
+        if (savedInstanceState == null) {
+           int vehicleId =
+                    getIntent().getIntExtra("VEHICLE_ID_KEY", 0);
+            VehicleDetailsFragment fragment =
+                    VehicleDetailsFragment.newInstance(vehicleId);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.vehicle_detail_container, fragment)
+                    .commit();
+        }
+
     }
 }

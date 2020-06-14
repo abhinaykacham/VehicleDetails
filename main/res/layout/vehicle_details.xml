@@ -4,53 +4,68 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/m_txt_vehicle_details_model"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/text_border"
-            android:hint="@string/no_details"
-            android:padding="5dp" 
-            android:layout_margin="10dp"
-            />
-        <TextView
-            android:id="@+id/m_txt_vehicle_details_price"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_toEndOf="@id/m_txt_vehicle_details_model"
-            android:background="@drawable/text_border"
-            android:hint="@string/no_details"
-            android:padding="5dp"
-            android:layout_margin="10dp"
-            />
+    <TextView
+        android:id="@+id/m_txt_vehicle_details_model"
+        android:layout_width="196dp"
+        android:layout_height="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/text_border"
+        android:hint="@string/no_details"
+        android:padding="5dp"
+        android:text="Make Model" />
 
-        <TextView
-            android:id="@+id/m_txt_vehicle_details_description"
-            android:layout_width="250dp"
-            android:layout_height="145dp"
-            android:layout_below="@id/m_txt_vehicle_details_model"
-            android:background="@drawable/text_border"
-            android:hint="@string/no_details"
-            android:padding="5dp"
-            android:layout_margin="10dp"/>
-        <ImageView
-            android:id="@+id/m_txt_vehicle_details_image"
-            android:layout_width="136dp"
-            android:layout_height="145dp"
-            android:layout_below="@id/m_txt_vehicle_details_price"
-            android:layout_toEndOf="@id/m_txt_vehicle_details_description"
-            android:background="@drawable/text_border"
-            android:padding="5dp"
-            android:layout_margin="10dp"/>
+    <TextView
+        android:id="@+id/m_txt_vehicle_details_price"
+        android:layout_width="134dp"
+        android:layout_height="52dp"
+        android:layout_above="@+id/m_txt_vehicle_details_image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="165dp"
+        android:background="@drawable/text_border"
+        android:hint="@string/no_details"
+        android:padding="5dp"
+        android:text="70000$" />
+
+    <TextView
+        android:id="@+id/m_txt_vehicle_details_description"
+        android:layout_width="212dp"
+        android:layout_height="142dp"
+        android:layout_below="@id/m_txt_vehicle_details_model"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/text_border"
+        android:hint="@string/no_details"
+        android:padding="5dp"
+        android:text="@string/vehicle_desc" />
+
+    <ImageView
+        android:id="@+id/m_txt_vehicle_details_image"
+        android:layout_width="wrap_content"
+        android:layout_height="274dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="188dp"
+        android:layout_toEndOf="@id/m_txt_vehicle_details_description"
+        android:background="@drawable/text_border"
+        android:padding="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ferrari" />
+
     <TextView
         android:id="@+id/m_txt_vehicle_details_updated_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/m_txt_vehicle_details_description"
+        android:layout_marginTop="166dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/text_border"
         android:hint="@string/no_details"
         android:padding="5dp"
-        android:layout_margin="10dp"/>
-    
+        android:text="02/02/2020" />
+
 </RelativeLayout>

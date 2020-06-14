@@ -3,4 +3,11 @@
     <string name="no_details">Sorry, This details are yet to be updated</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vehicle_desc">Location: Irvine, CA. This 2002 Ferrari 360 includes CD Player, Keyless Entry, Leather Seats, Power Locks, Power Windows, Premium Wheels\"</string>
+    <string-array name="cars">
+        <item>Ferrai (make)</item>
+    </string-array>
+    <string-array name="car_model">
+        <item>F350 (model)</item>
+    </string-array>
 </resources>

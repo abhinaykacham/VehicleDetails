@@ -1,8 +1,11 @@
 package com.example.vehicledata;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,21 +17,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    boolean twoPane;
+    boolean mTwoPane=false;
     Spinner mModel;
     Spinner mMake;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(findViewById(R.id.vehicle_detail_container)!=null)
-            twoPane=true;
         mModel=findViewById(R.id.m_spinner_model);
         mMake=findViewById(R.id.m_spinner_make);
         //TODO: Below array should be dynamically fetched
         List<String> vehiclesList=new ArrayList<>();
+        vehiclesList.add("Ferrari1");
+        vehiclesList.add("Ferrari2");
+        vehiclesList.add("Ferrari3");
         RecyclerView recyclerView=(RecyclerView)findViewById(R.id.m_list_of_vehicles);
+        //LinearLayoutManager linearLayoutManager = new
+                //LinearLayoutManager(getApplicationContext());
+       // recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(new SimplItemRecyclerViewAdapter(vehiclesList));
+        if(findViewById(R.id.vehicle_detail_container)!=null)
+            mTwoPane=true;
     }
 
     //TODO: Below class need to be customised and methods need to be implemented
@@ -41,12 +50,34 @@ public class MainActivity extends AppCompatActivity {
 
         @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            return null;
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.make_model_list, viewGroup, false);
+            return new ViewHolder(view);
         }
 
-        public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-
+        public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+            //holder.mVehicleItem.setText(String.valueOf(position + 1));
+            holder.mVehicleItem.setText(vehiclesList.get(position));
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mTwoPane) {
+                        int selectedSong = holder.getAdapterPosition();
+                        VehicleDetailsFragment fragment =
+                                VehicleDetailsFragment.newInstance(selectedSong);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.vehicle_detail_container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    } else {
+                        Context context = v.getContext();
+                        Intent intent = new Intent(context, VehicleDetailsActivity.class);
+                        intent.putExtra("VEHICLE_ID_KEY", holder.getAdapterPosition());
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
 
         @Override
@@ -57,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
 
         class ViewHolder extends  RecyclerView.ViewHolder{
             final View mView;
-            TextView mVehicleItem;
+            final  TextView mVehicleItem;
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 mView=itemView;
-                mVehicleItem=findViewById(R.id.id);
+                mVehicleItem=itemView.findViewById(R.id.id);
             }
         }
     }

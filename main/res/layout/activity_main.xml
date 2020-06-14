@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <FrameLayout
-        android:id="@+id/vehicle_detail_container"
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include layout="@layout/vehicle_details"/>
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="60dp">
+
+        <include
+            layout="@layout/vehicle_selection_options"
+            android:layout_width="match_parent"
+            android:layout_height="621dp" />
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

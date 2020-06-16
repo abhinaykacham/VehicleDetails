@@ -10,6 +10,8 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.vehicledata.content.VehicleDetailInformation;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,11 +42,23 @@ public class GetCarInformation extends AsyncTask<String, Void, JSONArray> {
             try {
 
                 JSONObject jsonObj = new JSONObject(jsonStr);
-
-                // Getting JSON Array node
                 vehicles = jsonObj.getJSONArray("lists");
 
-                //vehicles = new JSONArray(jsonStr);
+                for (int i = 0; i < vehicles.length(); i++) {
+                    JSONObject c = null;
+                    try {
+                        c = vehicles.getJSONObject(i);
+                        String imageUrl = c.getString("image_url");
+                        String vehicleDesc = c.getString("veh_description");
+                        String price    = c.getString("price");
+                        String updateDate = c.getString("created_at");
+                        VehicleDetailInformation vehicleDetailInformation = new VehicleDetailInformation(imageUrl,vehicleDesc,price,updateDate);
+                        wrapper.sVehicleDetailInformations.add(vehicleDetailInformation);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

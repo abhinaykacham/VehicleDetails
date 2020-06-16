@@ -32,6 +32,14 @@ public class wrapper {
         }
         return cars;
     }
+
+    static VehicleModel getsVehicleModelById(Integer vehicleId,Integer modelId){
+        for(VehicleModel vehicleModel:sVehicleModels){
+            if(vehicleModel.getMakeId()==vehicleId && modelId == vehicleModel.getModelId())
+                return vehicleModel;
+        }
+        return null;
+    }
     static List<VehicleDetailInformation> sVehicleDetailInformations=new ArrayList<>();
 
 }

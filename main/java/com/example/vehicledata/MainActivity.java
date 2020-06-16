@@ -45,12 +45,6 @@ public class MainActivity extends AppCompatActivity {
         mMake=findViewById(R.id.m_spinner_make);
         new GetCars(this).execute(url);
         //TODO: Below array should be dynamically fetched
-        List<String> vehiclesList=new ArrayList<>();
-        vehiclesList.add("Ferrari1");
-        vehiclesList.add("Ferrari2");
-        vehiclesList.add("Ferrari3");
-        RecyclerView recyclerView=(RecyclerView)findViewById(R.id.m_list_of_vehicles);
-        recyclerView.setAdapter(new SimplItemRecyclerViewAdapter(vehiclesList));
         if(findViewById(R.id.vehicle_detail_container)!=null)
             mTwoPane=true;
     }

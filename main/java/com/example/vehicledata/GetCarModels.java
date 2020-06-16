@@ -10,12 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.vehicledata.content.VehicleModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
     private String TAG = GetCarModels.class.getSimpleName();
@@ -55,23 +58,29 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
         MainActivity activity = activityReference.get();
         if (activity == null || activity.isFinishing()) return;
         Spinner spinner = activity.findViewById(R.id.m_spinner_model);
-        ArrayList<String> arrayList = new ArrayList<>();
+        //ArrayList<String> arrayList = new ArrayList<>();
+        Integer vehicle_make_id=0;
         for (int i = 0; i < result.length(); i++) {
             JSONObject c = null;
             try {
                 c = result.getJSONObject(i);
-                String id = c.getString("model");
-                arrayList.add(id);
+                String modelName = c.getString("model");
+                Integer modelId= c.getInt("id");
+                vehicle_make_id = c.getInt("vehicle_make_id");
+                VehicleModel vehicleModel = new VehicleModel(modelId,modelName,vehicle_make_id);
+                wrapper.sVehicleModels.add(vehicleModel);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(activity,android.R.layout.simple_spinner_item, arrayList);
+        Objects.requireNonNull(wrapper.getsVehicleUtilsById(vehicle_make_id)).mIdVehicleModelHashMap.put(vehicle_make_id,wrapper.sVehicleModels);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(activity,android.R.layout.simple_spinner_item, wrapper.getAllModels());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         //Todo: obtain make_id and model_id for api call(Use of Wrapper class) and store details
-        new GetCarInformation(activity).execute("https://thawing-beach-68207.herokuapp.com/cars/10/20/92603");
+        new GetCarInformation(activity).execute("https://thawing-beach-68207.herokuapp.com/cars/"+vehicle_make_id+"/"+wrapper.sVehicleModels.get(0).getModelId()+"/92603");
+
     }
 
 }

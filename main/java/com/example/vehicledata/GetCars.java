@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.vehicledata.content.VehicleUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,18 +64,21 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
             JSONObject c = null;
             try {
                 c = result.getJSONObject(i);
-                String id = c.getString("vehicle_make");
-                arrayList.add(id);
+                String vehicleName = c.getString("vehicle_make");
+                Integer vehicleId = c.getInt("id");
+                VehicleUtils vehicleUtils = new VehicleUtils(vehicleId,vehicleName);
+                wrapper.mVehicleUtilsList.add(vehicleUtils);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(activity,android.R.layout.simple_spinner_item, arrayList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(activity,android.R.layout.simple_spinner_item, wrapper.getAllCars());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         //Todo: store details and make rest call dynamic
-        new GetCarModels(activity).execute("https://thawing-beach-68207.herokuapp.com/carmodelmakes/3");
+        System.out.println(wrapper.mVehicleUtilsList.get(0).getVehicleId());
+        new GetCarModels(activity).execute("https://thawing-beach-68207.herokuapp.com/carmodelmakes/"+wrapper.mVehicleUtilsList.get(0).getVehicleId());
     }
 
 }

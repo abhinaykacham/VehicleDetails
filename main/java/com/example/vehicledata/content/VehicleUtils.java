@@ -6,10 +6,10 @@ import java.util.List;
 public class VehicleUtils {
     Integer mVehicleId;
     String mVehicleName;
-    HashMap<Integer, List<VehicleModel>> mIdVehicleModelHashMap = new HashMap<Integer, List<VehicleModel>>();
-    HashMap<VehicleModel, List<VehicleDetailInformation>> mVehicleDetailInformationHashMap = new HashMap<VehicleModel,List<VehicleDetailInformation>>();
+    public HashMap<Integer, List<VehicleModel>> mIdVehicleModelHashMap = new HashMap<Integer, List<VehicleModel>>();
+    public HashMap<VehicleModel, List<VehicleDetailInformation>> mVehicleDetailInformationHashMap = new HashMap<VehicleModel,List<VehicleDetailInformation>>();
 
-    VehicleUtils(Integer vehicleId,String vehicleName){
+    public VehicleUtils(Integer vehicleId, String vehicleName){
         this.mVehicleId = vehicleId;
         this.mVehicleName = vehicleName;
     }

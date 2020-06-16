@@ -1,13 +1,11 @@
 package com.example.vehicledata.content;
 
-import java.util.HashMap;
-import java.util.List;
-
+/**
+ * This Class represents data of a maker
+ */
 public class VehicleUtils {
     Integer mVehicleId;
     String mVehicleName;
-    public HashMap<Integer, List<VehicleModel>> mIdVehicleModelHashMap = new HashMap<Integer, List<VehicleModel>>();
-    public HashMap<VehicleModel, List<VehicleDetailInformation>> mVehicleDetailInformationHashMap = new HashMap<VehicleModel,List<VehicleDetailInformation>>();
 
     public VehicleUtils(Integer vehicleId, String vehicleName){
         this.mVehicleId = vehicleId;
@@ -30,4 +28,8 @@ public class VehicleUtils {
         mVehicleName = vehicleName;
     }
 
+    @Override
+    public String toString() {
+        return mVehicleName;
+    }
 }

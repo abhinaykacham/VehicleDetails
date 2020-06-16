@@ -1,5 +1,8 @@
 package com.example.vehicledata.content;
 
+/**
+ * This class consists of details of each model associated with a make
+ */
 public class VehicleModel {
     Integer mModelId;
     String mModelName;
@@ -35,7 +38,8 @@ public class VehicleModel {
         return mModelName;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return  mModelName;
+    }
 }

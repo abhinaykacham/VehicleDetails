@@ -2,10 +2,15 @@ package com.example.vehicledata;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+
+import com.example.vehicledata.content.VehicleDetailInformation;
+
 //  TODO: Update this class to render layout/activity_vehicle_details.xml which include vehicle_details.xml
-//  TODO: Update  this table to render data fethced from MainActivity either through Intent
-//          or by creating new REST API call with ID
 public class VehicleDetailsActivity extends AppCompatActivity {
+    TextView makeModel;
+    TextView price;
+    TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,13 +18,14 @@ public class VehicleDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vehicle_details);
 
         if (savedInstanceState == null) {
-           int vehicleId =
-                    getIntent().getIntExtra("VEHICLE_ID_KEY", 0);
-            VehicleDetailsFragment fragment =
-                    VehicleDetailsFragment.newInstance(vehicleId);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.vehicle_detail_container, fragment)
-                    .commit();
+           VehicleDetailInformation vehicleDetailInformation =
+                   (VehicleDetailInformation) getIntent().getSerializableExtra("VEHICLE_INFO");
+            description=findViewById(R.id.m_txt_vehicle_details_description);
+            makeModel=findViewById(R.id.m_txt_vehicle_details_model);
+            price=findViewById(R.id.m_txt_vehicle_details_price);
+            description.setText(vehicleDetailInformation.getVehicleDesc());
+            price.setText(vehicleDetailInformation.getPrice());
+            makeModel.setText(vehicleDetailInformation.getPrice());
         }
 
     }

@@ -1,12 +1,7 @@
-/*
- *  Get Car Information  Async Task retrieves car details from rest api
- *
- */
-
-
 package com.example.vehicledata;
 
 import android.os.AsyncTask;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -18,7 +13,10 @@ import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
+/**
+ *  Get Car Information  Async Task retrieves car details from REST API
+ *
+ */
 public class GetCarInformation extends AsyncTask<String, Void, JSONArray> {
     private String TAG = GetCarInformation.class.getSimpleName();
 
@@ -74,22 +72,27 @@ public class GetCarInformation extends AsyncTask<String, Void, JSONArray> {
         // get a reference to the activity if it is still there
         MainActivity activity = activityReference.get();
         if (activity == null || activity.isFinishing()) return;
-        ArrayList<String> arrayList = new ArrayList<>();
+        ArrayList<VehicleDetailInformation> vehicleDetailInformationArrayList = new ArrayList<>();
         //int sampleid=10;
         for (int i = 0; i < result.length(); i++) {
             JSONObject c = null;
             try {
                 c = result.getJSONObject(i);
-                String id = c.getString("vehicle_make");
-                arrayList.add(id+(i+1));
+                Integer id=c.getInt("id");
+                String make=c.getString("vehicle_make");
+                String model=c.getString("model");
+                String imageURL=c.getString("image_url");
+                String veh_desc=c.getString("veh_description");
+                String price=c.getString("price");
+                vehicleDetailInformationArrayList.add(new VehicleDetailInformation(id,make,model,imageURL,veh_desc,price,""));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
         RecyclerView recyclerView=(RecyclerView)activity.findViewById(R.id.m_list_of_vehicles);
-        recyclerView.setAdapter(activity.new SimplItemRecyclerViewAdapter(arrayList));
-        //Todo: Set different views in vehicle_selection_options and also store information of vehicles
+        recyclerView.setItemAnimator( new DefaultItemAnimator());
+        recyclerView.setAdapter(new SimplItemRecyclerViewAdapter(vehicleDetailInformationArrayList,activityReference));
     }
 
 }

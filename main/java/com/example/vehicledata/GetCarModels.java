@@ -1,14 +1,9 @@
-/*
- *  Get Cars Models Async Task retrieves the list of cars models from rest api
- *
- */
 package com.example.vehicledata;
 
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.vehicledata.content.VehicleModel;
 
@@ -18,8 +13,10 @@ import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Objects;
-
+/**
+ *  Get Cars Models Async Task retrieves the list of cars models from REST API
+ *
+ */
 public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
     private String TAG = GetCarModels.class.getSimpleName();
 
@@ -58,7 +55,7 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
         MainActivity activity = activityReference.get();
         if (activity == null || activity.isFinishing()) return;
         Spinner spinner = activity.findViewById(R.id.m_spinner_model);
-        //ArrayList<String> arrayList = new ArrayList<>();
+        ArrayList<VehicleModel> vehicleModelArrayList = new ArrayList<>();
         Integer vehicle_make_id=0;
         for (int i = 0; i < result.length(); i++) {
             JSONObject c = null;
@@ -68,18 +65,20 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
                 Integer modelId= c.getInt("id");
                 vehicle_make_id = c.getInt("vehicle_make_id");
                 VehicleModel vehicleModel = new VehicleModel(modelId,modelName,vehicle_make_id);
-                wrapper.sVehicleModels.add(vehicleModel);
+                vehicleModelArrayList.add(vehicleModel);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        Objects.requireNonNull(wrapper.getsVehicleUtilsById(vehicle_make_id)).mIdVehicleModelHashMap.put(vehicle_make_id,wrapper.sVehicleModels);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(activity,android.R.layout.simple_spinner_item, wrapper.getAllModels());
+        ArrayAdapter<VehicleModel> arrayAdapter = new ArrayAdapter<>(activity,android.R.layout.simple_spinner_item, vehicleModelArrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+        // TODO: Mark 0 as constant before final commit
+        spinner.setSelection(0);
         //Todo: obtain make_id and model_id for api call(Use of Wrapper class) and store details
-        new GetCarInformation(activity).execute("https://thawing-beach-68207.herokuapp.com/cars/"+vehicle_make_id+"/"+wrapper.sVehicleModels.get(0).getModelId()+"/92603");
+        //TODO: Fix the prefix URL as constant
+        new GetCarInformation(activity).execute("https://thawing-beach-68207.herokuapp.com/cars/"+((VehicleModel)spinner.getSelectedItem()).getMakeId()+"/"+((VehicleModel)spinner.getSelectedItem()).getModelId()+"/92603");
 
     }
 

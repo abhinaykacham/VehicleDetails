@@ -44,9 +44,10 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
             @Override
             public void onClick(View v) {
                 if (mTwoPane) {
-                    int selectedVehicle = holder.getAdapterPosition();
+                    //int selectedVehicle = holder.getAdapterPosition();
+                    VehicleDetailInformation vehicleDetailInformation = vehiclesList.get(holder.getAdapterPosition());
                     VehicleDetailsFragment fragment =
-                            VehicleDetailsFragment.newInstance(selectedVehicle);
+                            VehicleDetailsFragment.newInstance(vehicleDetailInformation);
                     activityReference.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.vehicle_detail_container, fragment)
                             .addToBackStack(null)

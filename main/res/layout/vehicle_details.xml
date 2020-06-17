@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_of_vehicular_details"
-    android:layout_width="match_parent"
+    android:layout_width="923dp"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -10,11 +10,11 @@
         android:layout_height="46dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="517dp"
+        android:layout_marginBottom="542dp"
         android:background="@drawable/text_border"
+        android:gravity="center"
         android:hint="@string/no_details"
         android:padding="5dp"
-        android:gravity="center"
         android:text="Make Model" />
 
     <TextView
@@ -23,8 +23,8 @@
         android:layout_height="46dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="517dp"
+        android:layout_marginEnd="540dp"
+        android:layout_marginBottom="542dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"
@@ -37,7 +37,7 @@
         android:layout_height="274dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="18dp"
-        android:layout_marginBottom="191dp"
+        android:layout_marginBottom="226dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"
@@ -45,14 +45,13 @@
         android:text="@string/vehicle_desc" />
 
     <ImageView
-        android:id="@+id/m_txt_vehicle_details_image"
-        android:layout_width="250dp"
+        android:id="@+id/m_vehicle_details_image"
+        android:layout_width="195dp"
         android:layout_height="274dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="191dp"
-        android:layout_toEndOf="@+id/m_txt_vehicle_details_description"
+        android:layout_marginEnd="519dp"
+        android:layout_marginBottom="227dp"
         android:background="@drawable/text_border"
         android:padding="5dp"
         android:scaleType="fitXY"
@@ -62,12 +61,13 @@
         android:id="@+id/m_txt_vehicle_details_updated_date"
         android:layout_width="203dp"
         android:layout_height="44dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="57dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginEnd="624dp"
+        android:layout_marginBottom="95dp"
         android:background="@drawable/text_border"
-        android:hint="@string/no_details"
         android:gravity="center"
+        android:hint="@string/no_details"
         android:padding="5dp"
         android:text="02/02/2020" />
 

@@ -13,41 +13,59 @@
 
     <Spinner
         android:id="@+id/m_spinner_make"
-        android:layout_width="247dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="264dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/text_border"
         android:overlapAnchor="false"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/m_spinner_model"
-        android:layout_width="247dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="264dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/text_border"
         android:overlapAnchor="false"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/m_spinner_make" />
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/m_list_of_vehicles"
-        android:layout_width="match_parent"
-        android:layout_height="507dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="526dp"
+        android:layout_height="646dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="272dp"
         android:padding="5dp"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/m_spinner_model"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context="com.example.vehicledata.MainActivity"
         tools:listitem="@layout/make_model_list"></android.support.v7.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/vehicle_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/m_list_of_vehicles"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

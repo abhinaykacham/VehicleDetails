@@ -40,6 +40,7 @@
         android:layout_weight="0.3"
         android:padding="5dp"
         app:layoutManager="LinearLayoutManager"
+        android:scrollbars="vertical"
         tools:context="com.example.vehicledata.MainActivity"
         tools:listitem="@layout/make_model_list">
     </android.support.v7.widget.RecyclerView>

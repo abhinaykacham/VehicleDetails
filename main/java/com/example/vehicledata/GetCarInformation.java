@@ -2,6 +2,8 @@ package com.example.vehicledata;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -73,7 +75,10 @@ public class GetCarInformation extends AsyncTask<String, Void, JSONArray> {
 
         }
         RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.m_list_of_vehicles);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        RecyclerView.ItemDecoration itemDecoration = new
+          DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setAdapter(new SimplItemRecyclerViewAdapter(vehicleDetailInformationArrayList, activityReference));
     }
 

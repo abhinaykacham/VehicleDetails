@@ -78,7 +78,7 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
         spinner.setSelection(0);
         //Todo: obtain make_id and model_id for api call(Use of Wrapper class) and store details
         //TODO: Fix the prefix URL as constant
-        new GetCarInformation(activity).execute("https://thawing-beach-68207.herokuapp.com/cars/"+((VehicleModel)spinner.getSelectedItem()).getMakeId()+"/"+((VehicleModel)spinner.getSelectedItem()).getModelId()+"/92603");
+        new GetCarInformation(activity).execute("https://thawing-beach-68207.herokuapp.com/cars/"+((VehicleModel)spinner.getSelectedItem()).getMakeId()+"/"+((VehicleModel)spinner.getSelectedItem()).getModelId()+"/92603","https://thawing-beach-68207.herokuapp.com/cars/");
 
     }
 

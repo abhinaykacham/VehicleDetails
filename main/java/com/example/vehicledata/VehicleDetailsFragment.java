@@ -24,6 +24,7 @@ public class VehicleDetailsFragment extends Fragment {
     TextView makeModel;
     TextView price;
     TextView description;
+    TextView updatedDate;
 
     public VehicleDetailsFragment() {
         // Required empty public constructor
@@ -64,9 +65,12 @@ public class VehicleDetailsFragment extends Fragment {
             description=rootView.findViewById(R.id.m_txt_vehicle_details_description);
             makeModel=rootView.findViewById(R.id.m_txt_vehicle_details_model);
             price=rootView.findViewById(R.id.m_txt_vehicle_details_price);
+            updatedDate=rootView.findViewById(R.id.m_txt_vehicle_details_updated_date);
             description.setText(mVehicleDetailInformation.getVehicleDesc());
             price.setText(mVehicleDetailInformation.getPrice());
-            makeModel.setText(mVehicleDetailInformation.getmModel());
+            makeModel.setText(mVehicleDetailInformation.getmModel()+ " - "+ mVehicleDetailInformation.getmModel());
+            updatedDate.setText("Last update: "+mVehicleDetailInformation.getUpdateDate());
+
         }
         return rootView;
     }

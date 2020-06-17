@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 new GetCarInformation((MainActivity)parent.getContext())
-                    .execute("https://thawing-beach-68207.herokuapp.com/cars/"+((VehicleModel)mModel.getSelectedItem()).getMakeId()+"/"+((VehicleModel)mModel.getSelectedItem()).getModelId()+"/92603");
+                    .execute("https://thawing-beach-68207.herokuapp.com/cars/"+((VehicleModel)mModel.getSelectedItem()).getMakeId()+"/"+((VehicleModel)mModel.getSelectedItem()).getModelId()+"/92603"
+                    ,"https://thawing-beach-68207.herokuapp.com/cars/");
                 vehiclesList=new ArrayList<>();
             }
 
@@ -57,4 +58,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-

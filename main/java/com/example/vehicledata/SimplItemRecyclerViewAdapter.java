@@ -39,7 +39,7 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         //holder.mVehicleItem.setText(String.valueOf(position + 1));
-        holder.mVehicleItem.setText(vehiclesList.get(position).getmMake()+(position+1));
+        holder.mVehicleItem.setText(vehiclesList.get(position).getmModel()+"      "+vehiclesList.get(position).getmId());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

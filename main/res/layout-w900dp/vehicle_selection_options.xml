@@ -57,6 +57,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         app:layoutManager="LinearLayoutManager"
+        android:scrollbars="vertical"
         tools:context="com.example.vehicledata.MainActivity"
         tools:listitem="@layout/make_model_list">
 

@@ -1,7 +1,6 @@
 package com.example.vehicledata;
 
 import android.os.AsyncTask;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,10 +27,20 @@ import java.util.TimeZone;
  *
  */
 public class GetCarInformation extends AsyncTask<String, Void, ArrayList<VehicleDetailInformation>> {
-    private String TAG = GetCarInformation.class.getSimpleName();
 
+    private String TAG = GetCarInformation.class.getSimpleName();
+    private DateFormat standardDateFormat;
+    private DateFormat simpleDateFormat;
+    private DecimalFormatSymbols decimalFormatSymbols;
+    private Currency currency;
+    private HttpHandler httpHandler;
+    private ArrayList<VehicleDetailInformation> vehicleDetailInformationArrayList;
     private WeakReference<MainActivity> activityReference;
-    MainActivity activity;
+    private MainActivity activity;
+    private DecimalFormat decimalFormat;
+    private String JSONResponse;
+    private JSONArray updatedInfo;
+
     // only retain a weak reference to the activity
     GetCarInformation(MainActivity context) {
         activityReference = new WeakReference<>(context);
@@ -39,66 +48,62 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
 
     @Override
     protected ArrayList<VehicleDetailInformation> doInBackground(String... args) {
-        HttpHandler sh = new HttpHandler();
-        JSONArray vehicles=null;
-        ArrayList<VehicleDetailInformation> vehicleDetailInformationArrayList = new ArrayList<>();
-        DateFormat standardDateFormat = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
-        DateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        DecimalFormatSymbols decimalFormatSymbols=new DecimalFormatSymbols();
+        httpHandler = new HttpHandler();
+        JSONArray vehicleInformationList=null;
+        vehicleDetailInformationArrayList = new ArrayList<>();
+        standardDateFormat = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
+        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        decimalFormatSymbols=new DecimalFormatSymbols();
         decimalFormatSymbols.setDecimalSeparator(',');
-        Currency currency=Currency.getInstance("USD");
+        currency=Currency.getInstance("USD");
         decimalFormatSymbols.setCurrency(currency);
-        DecimalFormat decimalFormat=new DecimalFormat(decimalFormatSymbols.getCurrencySymbol()+"###,###,###,###.##",decimalFormatSymbols);
+        decimalFormat=new DecimalFormat(decimalFormatSymbols.getCurrencySymbol()+"###,###,###,###.##",decimalFormatSymbols);
         // Making a request to url and getting response
-        String jsonStr = sh.makeServiceCall(args[0]);
-        Log.e(TAG, "Response from url: " + jsonStr);
-        if (jsonStr != null) {
+        JSONResponse = httpHandler.makeServiceCall(args[0]);
+        if (JSONResponse != null) {
             try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
+                JSONObject jsonObj = new JSONObject(JSONResponse);
                 // Getting JSON Array node
-                vehicles = jsonObj.getJSONArray("lists");
-                //vehicles = new JSONArray(jsonStr);
+                vehicleInformationList = jsonObj.getJSONArray("lists");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e(TAG,e.getMessage());
             }
         }
         // get a reference to the activity if it is still there
         activity = activityReference.get();
         if (activity == null || activity.isFinishing())
             return null;
-        for (int i = 0; i < vehicles.length(); i++) {
-            JSONObject c = null;
+        for (int i = 0; i < vehicleInformationList.length(); i++) {
+            JSONObject vehicleObject = null;
             try {
-                c = vehicles.getJSONObject(i);
-                Integer id = c.getInt("id");
-                String make = c.getString("vehicle_make");
-                String model = c.getString("model");
-                String imageURL = c.getString("image_url");
-                String veh_desc = c.getString("veh_description");
-                String price = decimalFormat.format(Double.parseDouble(c.getString("price")));
+                vehicleObject = vehicleInformationList.getJSONObject(i);
+                Integer id = vehicleObject.getInt("id");
+                String make = vehicleObject.getString("vehicle_make");
+                String model = vehicleObject.getString("model");
+                String imageURL = vehicleObject.getString("image_url");
+                String veh_desc = vehicleObject.getString("veh_description");
+                String price = decimalFormat.format(Double.parseDouble(vehicleObject.getString("price")));
                 vehicleDetailInformationArrayList.add(new VehicleDetailInformation(id, make, model, imageURL, veh_desc, price, ""));
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e(TAG,e.getMessage());
             }
 
         }
         for(VehicleDetailInformation vehicleDetailInformation:vehicleDetailInformationArrayList) {
-            jsonStr = sh.makeServiceCall(args[1]+vehicleDetailInformation.getmId());
-            JSONArray updatedInfo = null;
-
-            if (jsonStr != null) {
+            JSONResponse = httpHandler.makeServiceCall(args[1]+vehicleDetailInformation.getmId());
+            if (JSONResponse != null) {
                 try {
-                    updatedInfo = new JSONArray(jsonStr);
+                    updatedInfo = new JSONArray(JSONResponse);
                     standardDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
                     try {
                         JSONObject vehcileJsonObject=updatedInfo.getJSONObject(0);
                         Date updatedDate=standardDateFormat.parse(vehcileJsonObject.getString("updated_at"));
                         vehicleDetailInformation.setUpdateDate(simpleDateFormat.format(updatedDate));
                     } catch (JSONException | ParseException e) {
-                        e.printStackTrace();
+                        Log.e(TAG,e.getMessage());
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e(TAG,e.getMessage());
                 }
             }
         }
@@ -115,5 +120,4 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setAdapter(new SimplItemRecyclerViewAdapter(vehicleDetailInformationArrayList, activityReference));
     }
-
 }

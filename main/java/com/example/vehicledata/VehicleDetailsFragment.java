@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vehicledata.content.VehicleDetailInformation;
+import com.squareup.picasso.Picasso;
 
 // TODO: Customize data based on the data fetched
 /**
@@ -25,7 +27,7 @@ public class VehicleDetailsFragment extends Fragment {
     TextView price;
     TextView description;
     TextView updatedDate;
-
+    ImageView vehicleImage;
     public VehicleDetailsFragment() {
         // Required empty public constructor
     }
@@ -37,7 +39,6 @@ public class VehicleDetailsFragment extends Fragment {
      * @param vehicleDetailInformation Parameter 1.
      * @return A new instance of fragment VehicleDetailsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static VehicleDetailsFragment newInstance(VehicleDetailInformation vehicleDetailInformation) {
         VehicleDetailsFragment fragment = new VehicleDetailsFragment();
         Bundle args = new Bundle();
@@ -50,12 +51,11 @@ public class VehicleDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //TODO Get the data from Main Activity
             mVehicleDetailInformation = (VehicleDetailInformation) getArguments()
                     .getSerializable(VEHICLE_ID);
         }
     }
-    //TODO: substitute data of vehicle details with data fetched from MainActivity
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,11 +66,16 @@ public class VehicleDetailsFragment extends Fragment {
             makeModel=rootView.findViewById(R.id.m_txt_vehicle_details_model);
             price=rootView.findViewById(R.id.m_txt_vehicle_details_price);
             updatedDate=rootView.findViewById(R.id.m_txt_vehicle_details_updated_date);
+            vehicleImage= rootView.findViewById(R.id.m_vehicle_details_image);
+
             description.setText(mVehicleDetailInformation.getVehicleDesc());
             price.setText(mVehicleDetailInformation.getPrice());
             makeModel.setText(mVehicleDetailInformation.getmModel()+ " - "+ mVehicleDetailInformation.getmModel());
             updatedDate.setText("Last update: "+mVehicleDetailInformation.getUpdateDate());
-
+            Picasso.get().load(mVehicleDetailInformation.getImageUrl())     //Desired source of Image
+                    .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                    .error(R.drawable.image_place_holder)                   //When Application failed to load image, this image is displayed
+                    .into(vehicleImage);                                    //Target where we would like to see our image
         }
         return rootView;
     }

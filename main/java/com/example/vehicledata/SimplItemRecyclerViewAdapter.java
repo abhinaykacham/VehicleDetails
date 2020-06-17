@@ -12,12 +12,14 @@ import android.widget.TextView;
 import com.example.vehicledata.content.VehicleDetailInformation;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class used to render and provide actions for list of vehicles obtained by selecting make and model
+ */
 class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecyclerViewAdapter.ViewHolder>{
 
-    List<VehicleDetailInformation> vehiclesList=new ArrayList<>();
+    List<VehicleDetailInformation> vehiclesList;
     private WeakReference<MainActivity> reference;
     MainActivity activityReference;
     Boolean mTwoPane=false;
@@ -38,7 +40,7 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
     }
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        //holder.mVehicleItem.setText(String.valueOf(position + 1));
+        //Displaying Vehicle model and Unique ID in the list
         holder.mVehicleItem.setText(vehiclesList.get(position).getmModel()+"      "+vehiclesList.get(position).getmId());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +67,6 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
     public int getItemCount() {
         return vehiclesList.size();
     }
-
 
     class ViewHolder extends  RecyclerView.ViewHolder{
         final View mView;

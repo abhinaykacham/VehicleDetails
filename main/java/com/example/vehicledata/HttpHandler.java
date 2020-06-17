@@ -19,14 +19,19 @@ public class HttpHandler {
     public HttpHandler() {
     }
 
+    /**
+     * In this method REST is passed as
+     * @param reqUrl
+     * @return String is returned for further processing
+     */
     public String makeServiceCall(String reqUrl) {
         String response = null;
         try {
             URL url = new URL(reqUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
             // read the response
-            InputStream in = new BufferedInputStream(conn.getInputStream());
+            InputStream in = new BufferedInputStream(httpURLConnection.getInputStream());
             response = convertStreamToString(in);
         } catch (MalformedURLException e) {
             Log.e(TAG, "MalformedURLException: " + e.getMessage());
@@ -40,8 +45,13 @@ public class HttpHandler {
         return response;
     }
 
-    private String convertStreamToString(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+    /**
+     * In this method
+     * @param inputStream is converted to
+     * @return type String
+     */
+    private String convertStreamToString(InputStream inputStream) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder sb = new StringBuilder();
 
         String line;
@@ -53,7 +63,7 @@ public class HttpHandler {
             e.printStackTrace();
         } finally {
             try {
-                is.close();
+                inputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,6 @@
 package com.example.vehicledata;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -29,16 +28,14 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
 
     @Override
     protected JSONArray doInBackground(String... args) {
-        HttpHandler sh = new HttpHandler();
+        HttpHandler httpHandler = new HttpHandler();
         JSONArray vehicles=null;
         // Making a request to url and getting response
-        String jsonStr = sh.makeServiceCall(args[0]);
+        String JSONResponse = httpHandler.makeServiceCall(args[0]);
 
-        Log.e(TAG, "Response from url: " + jsonStr);
-
-        if (jsonStr != null) {
+        if (JSONResponse != null) {
             try {
-                vehicles = new JSONArray(jsonStr);
+                vehicles = new JSONArray(JSONResponse);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -55,11 +52,11 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
         Spinner spinner = activity.findViewById(R.id.m_spinner_make);
         ArrayList<VehicleUtils> vehicleUtilsArrayList = new ArrayList<>();
         for (int i = 0; i < result.length(); i++) {
-            JSONObject c = null;
+            JSONObject makerJSONObject = null;
             try {
-                c = result.getJSONObject(i);
-                String vehicleName = c.getString("vehicle_make");
-                Integer vehicleId = c.getInt("id");
+                makerJSONObject = result.getJSONObject(i);
+                String vehicleName = makerJSONObject.getString("vehicle_make");
+                Integer vehicleId = makerJSONObject.getInt("id");
                 VehicleUtils vehicleUtils = new VehicleUtils(vehicleId,vehicleName);
                 vehicleUtilsArrayList.add(vehicleUtils);
             } catch (JSONException e) {
@@ -70,8 +67,8 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
         ArrayAdapter<VehicleUtils> arrayAdapter = new ArrayAdapter<VehicleUtils>(activity,android.R.layout.simple_spinner_item,vehicleUtilsArrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        spinner.setSelection(0);
-        new GetCarModels(activity).execute("https://thawing-beach-68207.herokuapp.com/carmodelmakes/"+((VehicleUtils)spinner.getSelectedItem()).getVehicleId());
+        spinner.setSelection(Reference.SPINNER_INITIAL_POSITION);
+        new GetCarModels(activity).execute(Reference.CAR_MODEL_URL+((VehicleUtils)spinner.getSelectedItem()).getVehicleId());
     }
 
 }

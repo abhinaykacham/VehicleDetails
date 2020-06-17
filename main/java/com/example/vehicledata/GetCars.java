@@ -37,16 +37,12 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
         Log.e(TAG, "Response from url: " + jsonStr);
 
         if (jsonStr != null) {
-
             try {
-
                 vehicles = new JSONArray(jsonStr);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return vehicles;
     }
 

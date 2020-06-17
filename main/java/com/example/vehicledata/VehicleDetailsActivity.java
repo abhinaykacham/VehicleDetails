@@ -2,6 +2,7 @@ package com.example.vehicledata;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vehicledata.content.VehicleDetailInformation;
@@ -25,7 +26,7 @@ public class VehicleDetailsActivity extends AppCompatActivity {
             price=findViewById(R.id.m_txt_vehicle_details_price);
             description.setText(vehicleDetailInformation.getVehicleDesc());
             price.setText(vehicleDetailInformation.getPrice());
-            makeModel.setText(vehicleDetailInformation.getPrice());
+            makeModel.setText(vehicleDetailInformation.getmModel());
         }
 
     }

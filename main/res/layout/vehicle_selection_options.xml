@@ -15,18 +15,19 @@
 
     <Spinner
         android:id="@+id/m_spinner_make"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_width="389dp"
+        android:layout_height="49dp"
         android:layout_margin="10dp"
         android:background="@drawable/text_border"
+        android:overlapAnchor="false"
         android:padding="5dp" />
-
     <Spinner
         android:id="@+id/m_spinner_model"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_width="389dp"
+        android:layout_height="49dp"
         android:layout_margin="10dp"
         android:background="@drawable/text_border"
+        android:overlapAnchor="false"
         android:padding="5dp" />
 
     <android.support.v7.widget.RecyclerView

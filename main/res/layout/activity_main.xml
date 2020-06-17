@@ -19,7 +19,7 @@
         <include
             layout="@layout/vehicle_selection_options"
             android:layout_width="match_parent"
-            android:layout_height="621dp" />
+            android:layout_height="1292dp" />
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

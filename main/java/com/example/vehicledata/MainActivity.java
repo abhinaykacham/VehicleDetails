@@ -16,7 +16,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Spinner mModel;
     Spinner mMake;
-    List<VehicleDetailInformation> vehiclesList;
     private String TAG = MainActivity.class.getSimpleName();
     VehicleDetailsFragment mFragmentById=null;
 
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
                 new GetCarInformation((MainActivity)parent.getContext())
                     .execute(vehicleInfoURL, Reference.CAR_UPDATED_DETAIL_INFO_URL);
-                vehiclesList=new ArrayList<>();
                 mFragmentById = (VehicleDetailsFragment)getSupportFragmentManager().findFragmentById(R.id.vehicle_detail_container);
                 if(mFragmentById!=null)
                 getSupportFragmentManager().beginTransaction().remove(mFragmentById).commit();

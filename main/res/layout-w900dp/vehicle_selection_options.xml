@@ -15,12 +15,11 @@
         android:id="@+id/m_spinner_make"
         android:layout_width="264dp"
         android:layout_height="55dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/text_border"
+        android:layout_marginTop="72dp"
         android:overlapAnchor="false"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,12 +27,11 @@
         android:id="@+id/m_spinner_model"
         android:layout_width="264dp"
         android:layout_height="55dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/text_border"
+        android:layout_marginTop="48dp"
         android:overlapAnchor="false"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/m_spinner_make" />
 

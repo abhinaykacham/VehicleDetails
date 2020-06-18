@@ -1,5 +1,6 @@
 package com.example.vehicledata;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -19,11 +20,25 @@ import java.util.ArrayList;
  */
 public class GetCars extends AsyncTask<String, Void, JSONArray> {
     private String TAG = GetCars.class.getSimpleName();
+    private ProgressDialog pDialog;
 
     private WeakReference<MainActivity> activityReference;
     // only retain a weak reference to the activity
     GetCars(MainActivity context) {
         activityReference = new WeakReference<>(context);
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        // Showing progress dialog
+        pDialog = new ProgressDialog(activityReference.get());
+        pDialog.setMessage("Please wait...");
+        pDialog.setTitle("List of Cars");
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
     }
 
     @Override
@@ -46,6 +61,7 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
     @Override
     protected void onPostExecute(JSONArray result) {
         super.onPostExecute(result);
+        pDialog.dismiss();
         // get a reference to the activity if it is still there
         MainActivity activity = activityReference.get();
         if (activity == null || activity.isFinishing()) return;

@@ -1,5 +1,6 @@
 package com.example.vehicledata;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -19,12 +20,25 @@ import java.util.ArrayList;
  */
 public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
     private String TAG = GetCarModels.class.getSimpleName();
-
+    private ProgressDialog pDialog;
     private WeakReference<MainActivity> activityReference;
     // only retain a weak reference to the activity
     GetCarModels(MainActivity context) {
         activityReference = new WeakReference<>(context);
     }
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        // Showing progress dialog
+        pDialog = new ProgressDialog(activityReference.get());
+        pDialog.setMessage("Please wait...");
+        pDialog.setTitle("List of Car Models");
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+    }
+
 
     @Override
     protected JSONArray doInBackground(String... args) {
@@ -46,6 +60,7 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
     @Override
     protected void onPostExecute(JSONArray result) {
         super.onPostExecute(result);
+        pDialog.dismiss();
         // get a reference to the activity if it is still there
         MainActivity activity = activityReference.get();
         if (activity == null || activity.isFinishing()) return;
@@ -65,7 +80,7 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
             }
         }
 
-        ArrayAdapter<VehicleModel> arrayAdapter = new ArrayAdapter<>(activity,android.R.layout.simple_spinner_item, vehicleModelArrayList);
+        ArrayAdapter<VehicleModel> arrayAdapter = new ArrayAdapter<>(activity,android.R.layout.simple_spinner_dropdown_item, vehicleModelArrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(Reference.SPINNER_INITIAL_POSITION);

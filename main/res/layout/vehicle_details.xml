@@ -10,7 +10,7 @@
         android:id="@+id/m_txt_vehicle_details_model"
         android:layout_width="159dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/text_border"
         android:gravity="center"
@@ -52,19 +52,19 @@
         android:id="@+id/m_vehicle_details_image"
         android:layout_width="195dp"
         android:layout_height="274dp"
-        android:layout_marginEnd="512dp"
+        android:layout_marginStart="12dp"
         android:layout_marginBottom="72dp"
         android:background="@drawable/text_border"
         android:padding="5dp"
         android:scaleType="fitXY"
         android:src="@drawable/ferrari"
         app:layout_constraintBottom_toTopOf="@+id/m_txt_vehicle_details_updated_date"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/m_txt_vehicle_details_description" />
 
     <TextView
         android:id="@+id/m_txt_vehicle_details_updated_date"
-        android:layout_width="159dp"
-        android:layout_height="35dp"
+        android:layout_width="162dp"
+        android:layout_height="55dp"
         android:layout_marginEnd="632dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/text_border"

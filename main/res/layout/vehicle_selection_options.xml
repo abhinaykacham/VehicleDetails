@@ -18,6 +18,7 @@
         android:layout_marginTop="44dp"
         android:overlapAnchor="false"
         android:padding="5dp"
+        android:background="@drawable/spinner_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +29,7 @@
         android:layout_height="51dp"
         android:layout_marginTop="16dp"
         android:overlapAnchor="false"
+        android:background="@drawable/spinner_style"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

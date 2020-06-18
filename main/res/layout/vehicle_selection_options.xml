@@ -41,8 +41,10 @@
         android:layout_marginTop="36dp"
         android:padding="5dp"
         android:scrollbars="vertical"
+        android:scrollbarSize="12dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
+        android:fadeScrollbars="false"
         app:layout_constraintTop_toBottomOf="@+id/m_spinner_model"
         tools:context="com.example.vehicledata.MainActivity"
         tools:listitem="@layout/make_model_list"></android.support.v7.widget.RecyclerView>

@@ -42,6 +42,8 @@
         android:layout_marginTop="268dp"
         android:padding="5dp"
         android:scrollbars="vertical"
+        android:scrollbarSize="12dp"
+        android:fadeScrollbars="false"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

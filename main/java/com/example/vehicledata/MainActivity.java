@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner mMake;
     List<VehicleDetailInformation> vehiclesList;
     private String TAG = MainActivity.class.getSimpleName();
+    VehicleDetailsFragment mFragmentById=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 new GetCarModels((MainActivity) parent.getContext())
                         .execute(Reference.CAR_MODEL_URL+((VehicleUtils)parent.getSelectedItem()).getVehicleId().toString());
+                mFragmentById = (VehicleDetailsFragment)getSupportFragmentManager().findFragmentById(R.id.vehicle_detail_container);
+                if(mFragmentById!=null)
+                    getSupportFragmentManager().beginTransaction().remove(mFragmentById).commit();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 new GetCarInformation((MainActivity)parent.getContext())
                     .execute(vehicleInfoURL, Reference.CAR_UPDATED_DETAIL_INFO_URL);
                 vehiclesList=new ArrayList<>();
+                mFragmentById = (VehicleDetailsFragment)getSupportFragmentManager().findFragmentById(R.id.vehicle_detail_container);
+                if(mFragmentById!=null)
+                getSupportFragmentManager().beginTransaction().remove(mFragmentById).commit();
             }
 
             @Override

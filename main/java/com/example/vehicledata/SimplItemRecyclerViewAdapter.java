@@ -2,14 +2,17 @@ package com.example.vehicledata;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vehicledata.content.VehicleDetailInformation;
+import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -41,7 +44,12 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         //Displaying Vehicle model and Unique ID in the list
-        holder.mVehicleItem.setText(vehiclesList.get(position).getmModel()+"      "+vehiclesList.get(position).getmId());
+        holder.mVehicleItem.setText(vehiclesList.get(position).getmId().toString());
+        holder.mModelName.setText(vehiclesList.get(position).getmModel());
+        Picasso.get().load(vehiclesList.get(position).getImageUrl())     //Desired source of Image
+                .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                .error(R.drawable.image_place_holder)                   //When Application failed to load image, this image is displayed
+                .into(holder.mImageView);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,10 +79,14 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
     class ViewHolder extends  RecyclerView.ViewHolder{
         final View mView;
         final TextView mVehicleItem;
+        final ImageView mImageView;
+        final TextView  mModelName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mView=itemView;
             mVehicleItem=itemView.findViewById(R.id.id);
+            mModelName = itemView.findViewById(R.id.modelName);
+            mImageView = itemView.findViewById(R.id.imgTvshow);
         }
     }
 }

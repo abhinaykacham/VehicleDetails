@@ -70,7 +70,7 @@ public class VehicleDetailsFragment extends Fragment {
 
             description.setText(mVehicleDetailInformation.getVehicleDesc());
             price.setText(mVehicleDetailInformation.getPrice());
-            makeModel.setText(mVehicleDetailInformation.getmModel()+ " - "+ mVehicleDetailInformation.getmModel());
+            makeModel.setText(mVehicleDetailInformation.getmMake()+ " - "+ mVehicleDetailInformation.getmModel());
             updatedDate.setText("Last update: "+mVehicleDetailInformation.getUpdateDate());
             if(mVehicleDetailInformation.getImageUrl()!=null
                     && mVehicleDetailInformation.getImageUrl().length()!=0) {

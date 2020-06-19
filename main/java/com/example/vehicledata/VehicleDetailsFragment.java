@@ -72,10 +72,17 @@ public class VehicleDetailsFragment extends Fragment {
             price.setText(mVehicleDetailInformation.getPrice());
             makeModel.setText(mVehicleDetailInformation.getmModel()+ " - "+ mVehicleDetailInformation.getmModel());
             updatedDate.setText("Last update: "+mVehicleDetailInformation.getUpdateDate());
-            Picasso.get().load(mVehicleDetailInformation.getImageUrl())     //Desired source of Image
-                    .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
-                    .error(R.drawable.image_place_holder)                   //When Application failed to load image, this image is displayed
-                    .into(vehicleImage);                                    //Target where we would like to see our image
+            if(mVehicleDetailInformation.getImageUrl()!=null
+                    && mVehicleDetailInformation.getImageUrl().length()!=0) {
+                Picasso.get().load(mVehicleDetailInformation.getImageUrl())     //Desired source of Image
+                        .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                        .error(R.drawable.image_clip)                           //When Application failed to load image, this image is displayed
+                        .into(vehicleImage);                                    //Target View where we would like to place Image
+            }else {
+                Picasso.get().load(R.drawable.image_clip)                       //Loading Car clip since Source URL is NULL
+                        .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                        .into(vehicleImage);
+            }
         }
         return rootView;
     }

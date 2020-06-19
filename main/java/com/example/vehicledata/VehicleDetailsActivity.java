@@ -19,30 +19,48 @@ public class VehicleDetailsActivity extends AppCompatActivity {
     TextView description;
     TextView updatedDate;
     ImageView vehicleImage;
+    String SAVED_OBJECT="savedObject";
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(SAVED_OBJECT, getIntent().getSerializableExtra("VEHICLE_INFO"));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_details);
-
+        description=findViewById(R.id.m_txt_vehicle_details_description);
+        makeModel=findViewById(R.id.m_txt_vehicle_details_model);
+        price=findViewById(R.id.m_txt_vehicle_details_price);
+        updatedDate=findViewById(R.id.m_txt_vehicle_details_updated_date);
+        vehicleImage= findViewById(R.id.m_vehicle_details_image);
+        VehicleDetailInformation vehicleDetailInformation;
         if (savedInstanceState == null) {
-           VehicleDetailInformation vehicleDetailInformation =
-                   (VehicleDetailInformation) getIntent().getSerializableExtra("VEHICLE_INFO");
-            description=findViewById(R.id.m_txt_vehicle_details_description);
-            makeModel=findViewById(R.id.m_txt_vehicle_details_model);
-            price=findViewById(R.id.m_txt_vehicle_details_price);
-            updatedDate=findViewById(R.id.m_txt_vehicle_details_updated_date);
-            vehicleImage= findViewById(R.id.m_vehicle_details_image);
+            vehicleDetailInformation =
+                    (VehicleDetailInformation) getIntent().getSerializableExtra("VEHICLE_INFO");
+        }
+        else{
+            vehicleDetailInformation=(VehicleDetailInformation)savedInstanceState.getSerializable(SAVED_OBJECT);
+        }
 
             description.setText(vehicleDetailInformation.getVehicleDesc());
             price.setText(vehicleDetailInformation.getPrice());
             makeModel.setText(vehicleDetailInformation.getmMake()+" - "+vehicleDetailInformation.getmModel());
             updatedDate.setText("Last update: "+vehicleDetailInformation.getUpdateDate());
-            Picasso.get().load(vehicleDetailInformation.getImageUrl())  //Desired source of Image
-                    .placeholder(R.drawable.loading_image)              //This acts as placeholder until image is fetched
-                    .error(R.drawable.image_place_holder)               //When Application failed to load image, this image is displayed
-                    .into(vehicleImage);                                //Target where we would like to see our image
+
+            if(vehicleDetailInformation.getImageUrl()!=null
+                    && vehicleDetailInformation.getImageUrl().length()!=0) {
+                Picasso.get().load(vehicleDetailInformation.getImageUrl())    //Desired source of Image
+                        .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                        .error(R.drawable.image_clip)                           //When Application failed to load image, this image is displayed
+                        .into(vehicleImage);
+            }else {
+                Picasso.get().load(R.drawable.image_clip)                   //Loading Car clip since Source URL is NULL
+                        .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                        .into(vehicleImage);
+            }
+
         }
 
     }
-}

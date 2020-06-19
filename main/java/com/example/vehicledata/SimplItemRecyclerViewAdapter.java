@@ -46,10 +46,17 @@ class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecycle
         //Displaying Vehicle model and Unique ID in the list
         holder.mVehicleItem.setText(vehiclesList.get(position).getmId().toString());
         holder.mModelName.setText(vehiclesList.get(position).getmModel());
-        Picasso.get().load(vehiclesList.get(position).getImageUrl())     //Desired source of Image
-                .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
-                .error(R.drawable.image_place_holder)                   //When Application failed to load image, this image is displayed
-                .into(holder.mImageView);
+        if(vehiclesList.get(position).getImageUrl()!=null
+                && vehiclesList.get(position).getImageUrl().length()!=0) {
+            Picasso.get().load(vehiclesList.get(position).getImageUrl())    //Desired source of Image
+                    .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                    .error(R.drawable.image_clip)                           //When Application failed to load image, this image is displayed
+                    .into(holder.mImageView);
+        }else {
+            Picasso.get().load(R.drawable.image_clip)                   //Loading Car clip since Source URL is NULL
+                    .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                    .into(holder.mImageView);
+        }
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

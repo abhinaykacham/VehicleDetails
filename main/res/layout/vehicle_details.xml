@@ -39,7 +39,7 @@
         android:layout_width="177dp"
         android:layout_height="274dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="64dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"
@@ -52,8 +52,8 @@
         android:id="@+id/m_vehicle_details_image"
         android:layout_width="195dp"
         android:layout_height="274dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="64dp"
         android:background="@drawable/text_border"
         android:padding="5dp"
         android:scaleType="fitXY"
@@ -63,16 +63,16 @@
 
     <TextView
         android:id="@+id/m_txt_vehicle_details_updated_date"
-        android:layout_width="162dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="632dp"
-        android:layout_marginBottom="112dp"
+        android:layout_width="245dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="132dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"
         android:padding="5dp"
         android:text="02/02/2020"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

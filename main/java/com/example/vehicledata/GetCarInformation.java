@@ -131,9 +131,10 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
         super.onPostExecute(vehicleDetailInformationArrayList);
 
         RecyclerView recyclerView = activity.findViewById(R.id.m_list_of_vehicles);
-        RecyclerView.ItemDecoration itemDecoration = new
-                DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
+        //RecyclerView.ItemDecoration itemDecoration = new
+                //DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
+        //recyclerView.addItemDecoration(itemDecoration);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new SimplItemRecyclerViewAdapter(vehicleDetailInformationArrayList, activityReference));
     }
 }

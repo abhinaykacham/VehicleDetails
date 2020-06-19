@@ -21,11 +21,14 @@ import java.util.ArrayList;
 public class GetCars extends AsyncTask<String, Void, JSONArray> {
     private String TAG = GetCars.class.getSimpleName();
     private ProgressDialog pDialog;
-
+    int makePosition;
+    int modelPosition;
     private WeakReference<MainActivity> activityReference;
     // only retain a weak reference to the activity
-    GetCars(MainActivity context) {
+    GetCars(MainActivity context,int makePosition, int modelPosition) {
         activityReference = new WeakReference<>(context);
+        this.makePosition=makePosition;
+        this.modelPosition=modelPosition;
     }
 
     @Override
@@ -83,8 +86,8 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
         ArrayAdapter<VehicleUtils> arrayAdapter = new ArrayAdapter<VehicleUtils>(activity,android.R.layout.simple_spinner_item,vehicleUtilsArrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        spinner.setSelection(Reference.SPINNER_INITIAL_POSITION);
-        new GetCarModels(activity).execute(Reference.CAR_MODEL_URL+((VehicleUtils)spinner.getSelectedItem()).getVehicleId());
+        spinner.setSelection(makePosition);
+        new GetCarModels(activity,modelPosition).execute(Reference.CAR_MODEL_URL+((VehicleUtils)spinner.getSelectedItem()).getVehicleId());
     }
 
 }

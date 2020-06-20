@@ -35,36 +35,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/m_spinner_make" />
 
-    <FrameLayout
-        android:id="@+id/recyclerview_container1"
-        android:layout_width="match_parent"
-        android:layout_height="420dp"
-        android:layout_marginTop="64dp"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/m_list_of_vehicles"
+        android:layout_width="415dp"
+        android:layout_height="410dp"
+        android:layout_marginTop="28dp"
+        android:fadeScrollbars="false"
+        android:padding="5dp"
+        android:scrollbarSize="12dp"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_weight="0.8"
-        app:layout_constraintTop_toBottomOf="@+id/m_spinner_make">
+        app:layout_constraintTop_toBottomOf="@+id/m_spinner_model"
+        tools:context="com.example.vehicledata.MainActivity"
+        tools:listitem="@layout/make_model_list">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/m_list_of_vehicles"
-            android:layout_width="400dp"
-            android:layout_height="513dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="36dp"
-            android:fadeScrollbars="false"
-            android:padding="5dp"
-            android:scrollbarSize="12dp"
-            android:scrollbars="vertical"
-            app:layoutManager="LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/m_spinner_model"
-            tools:context="com.example.vehicledata.MainActivity"
-            tools:listitem="@layout/make_model_list">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </FrameLayout>
+    </android.support.v7.widget.RecyclerView>
 
 
 </android.support.constraint.ConstraintLayout>

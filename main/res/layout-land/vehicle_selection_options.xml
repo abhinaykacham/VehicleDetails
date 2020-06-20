@@ -15,7 +15,7 @@
         android:id="@+id/m_spinner_make"
         android:layout_width="247dp"
         android:layout_height="51dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/spinner_style"
         android:overlapAnchor="false"
         android:padding="5dp"
@@ -37,34 +37,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/m_spinner_make" />
 
-    <FrameLayout
-        android:id="@+id/recyclerview_container2"
-        android:layout_width="match_parent"
-        android:layout_height="520dp"
-        android:layout_marginTop="9dp"
-        android:layout_weight="0.8"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/m_list_of_vehicles"
+        android:layout_width="689dp"
+        android:layout_height="197dp"
+        android:layout_marginTop="8dp"
+        android:fadeScrollbars="false"
+        android:padding="5dp"
+        android:scrollbarSize="12dp"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/m_spinner_model">
+        app:layout_constraintTop_toBottomOf="@+id/m_spinner_model"
+        tools:context="com.example.vehicledata.MainActivity"
+        tools:listitem="@layout/make_model_list">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/m_list_of_vehicles"
-            android:layout_width="match_parent"
-            android:layout_height="199dp"
-            android:fadeScrollbars="false"
-            android:padding="5dp"
-            android:scrollbarSize="12dp"
-            android:scrollbars="vertical"
-            app:layoutManager="LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/m_spinner_model"
-            tools:context="com.example.vehicledata.MainActivity"
-            tools:listitem="@layout/make_model_list">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </FrameLayout>
+    </android.support.v7.widget.RecyclerView>
 
 
 </android.support.constraint.ConstraintLayout>

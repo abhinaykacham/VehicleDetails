@@ -2,6 +2,8 @@ package com.example.vehicledata;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,8 @@ public class VehicleDetailsFragment extends Fragment {
     TextView description;
     TextView updatedDate;
     ImageView vehicleImage;
+    SpannableStringBuilder vehicleDescriptionFormatter;
+    String vehicleDescriptionLabel;
     public VehicleDetailsFragment() {
         // Required empty public constructor
     }
@@ -61,6 +65,7 @@ public class VehicleDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.vehicle_details, container, false);
+
         if (mVehicleDetailInformation != null) {
             description=rootView.findViewById(R.id.m_txt_vehicle_details_description);
             makeModel=rootView.findViewById(R.id.m_txt_vehicle_details_model);
@@ -68,7 +73,12 @@ public class VehicleDetailsFragment extends Fragment {
             updatedDate=rootView.findViewById(R.id.m_txt_vehicle_details_updated_date);
             vehicleImage= rootView.findViewById(R.id.m_vehicle_details_image);
 
-            description.setText(mVehicleDetailInformation.getVehicleDesc());
+            vehicleDescriptionLabel=getString(R.string.vehicle_description_label);
+            vehicleDescriptionFormatter = new SpannableStringBuilder(vehicleDescriptionLabel+mVehicleDetailInformation.getVehicleDesc());
+            vehicleDescriptionFormatter.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
+                    0, vehicleDescriptionLabel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            description.setText(vehicleDescriptionFormatter);
+
             price.setText(mVehicleDetailInformation.getPrice());
             makeModel.setText(mVehicleDetailInformation.getmMake()+ " - "+ mVehicleDetailInformation.getmModel());
             updatedDate.setText("Last update: "+mVehicleDetailInformation.getUpdateDate());

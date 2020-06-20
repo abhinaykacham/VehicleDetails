@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/m_txt_vehicle_details_model"
-        android:layout_width="336dp"
+        android:layout_width="340dp"
         android:layout_height="56dp"
         android:layout_marginStart="56dp"
         android:layout_marginBottom="68dp"
@@ -23,10 +23,10 @@
 
     <TextView
         android:id="@+id/m_txt_vehicle_details_price"
-        android:layout_width="220dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="251dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"
@@ -38,38 +38,38 @@
 
     <TextView
         android:id="@+id/m_txt_vehicle_details_description"
-        android:layout_width="287dp"
-        android:layout_height="215dp"
+        android:layout_width="340dp"
+        android:layout_height="351dp"
         android:layout_marginStart="56dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"
         android:padding="5dp"
         android:text="@string/vehicle_desc"
-        android:textSize="15sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/m_txt_vehicle_details_updated_date"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/m_vehicle_details_image"
-        android:layout_width="298dp"
-        android:layout_height="215dp"
+        android:layout_width="251dp"
+        android:layout_height="351dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="314dp"
         android:background="@drawable/text_border"
         android:padding="5dp"
         android:scaleType="fitXY"
         android:src="@drawable/ferrari"
-        app:layout_constraintBottom_toTopOf="@+id/m_txt_vehicle_details_updated_date"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/m_txt_vehicle_details_updated_date"
-        android:layout_width="336dp"
+        android:layout_width="340dp"
         android:layout_height="59dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="352dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="212dp"
         android:background="@drawable/text_border"
         android:gravity="center"
         android:hint="@string/no_details"

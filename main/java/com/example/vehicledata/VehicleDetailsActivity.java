@@ -2,6 +2,8 @@ package com.example.vehicledata;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,9 @@ public class VehicleDetailsActivity extends AppCompatActivity {
     TextView updatedDate;
     ImageView vehicleImage;
     String SAVED_OBJECT="savedObject";
+    SpannableStringBuilder vehicleDescriptionFormatter;
+    String vehicleDescriptionLabel;
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -44,23 +49,26 @@ public class VehicleDetailsActivity extends AppCompatActivity {
             vehicleDetailInformation=(VehicleDetailInformation)savedInstanceState.getSerializable(SAVED_OBJECT);
         }
 
-            description.setText(vehicleDetailInformation.getVehicleDesc());
-            price.setText(vehicleDetailInformation.getPrice());
-            makeModel.setText(vehicleDetailInformation.getmMake()+" - "+vehicleDetailInformation.getmModel());
-            updatedDate.setText("Last update: "+vehicleDetailInformation.getUpdateDate());
+        vehicleDescriptionLabel=getString(R.string.vehicle_description_label);
+        vehicleDescriptionFormatter = new SpannableStringBuilder(vehicleDescriptionLabel+vehicleDetailInformation.getVehicleDesc());
+        vehicleDescriptionFormatter.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
+                0, vehicleDescriptionLabel.length() , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        description.setText(vehicleDescriptionFormatter);
 
-            if(vehicleDetailInformation.getImageUrl()!=null
-                    && vehicleDetailInformation.getImageUrl().length()!=0) {
-                Picasso.get().load(vehicleDetailInformation.getImageUrl())    //Desired source of Image
-                        .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
-                        .error(R.drawable.image_clip)                           //When Application failed to load image, this image is displayed
-                        .into(vehicleImage);
-            }else {
-                Picasso.get().load(R.drawable.image_clip)                   //Loading Car clip since Source URL is NULL
-                        .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
-                        .into(vehicleImage);
-            }
+        price.setText(vehicleDetailInformation.getPrice());
+        makeModel.setText(vehicleDetailInformation.getmMake()+" - "+vehicleDetailInformation.getmModel());
+        updatedDate.setText("Last update: "+vehicleDetailInformation.getUpdateDate());
 
+        if(vehicleDetailInformation.getImageUrl()!=null
+                && vehicleDetailInformation.getImageUrl().length()!=0) {
+            Picasso.get().load(vehicleDetailInformation.getImageUrl())    //Desired source of Image
+                    .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                    .error(R.drawable.image_clip)                           //When Application failed to load image, this image is displayed
+                    .into(vehicleImage);
+        }else {
+            Picasso.get().load(R.drawable.image_clip)                   //Loading Car clip since Source URL is NULL
+                    .placeholder(R.drawable.loading_image)                  //This acts as placeholder until image is fetched
+                    .into(vehicleImage);
         }
-
     }
+}

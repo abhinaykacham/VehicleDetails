@@ -13,6 +13,7 @@
     card_view:cardElevation="5dp">
 
     <LinearLayout
+        android:id="@+id/cv_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/text_border"

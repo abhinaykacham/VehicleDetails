@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import com.example.vehicledata.content.VehicleDetailInformation;
-import com.example.vehicledata.content.VehicleModel;
-import com.example.vehicledata.content.VehicleUtils;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.AsyncTasks.GetCarInformation;
+import com.example.AsyncTasks.GetCarModels;
+import com.example.AsyncTasks.GetCars;
+import com.example.Helper.Reference;
+import com.example.POJO.VehicleModel;
+import com.example.POJO.VehicleUtils;
 
 public class MainActivity extends AppCompatActivity {
     Spinner mModel;

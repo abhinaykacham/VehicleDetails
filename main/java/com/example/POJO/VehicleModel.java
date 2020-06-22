@@ -1,4 +1,4 @@
-package com.example.vehicledata.content;
+package com.example.POJO;
 
 /**
  * This class consists of details of each model associated with a make

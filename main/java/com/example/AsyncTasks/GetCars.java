@@ -1,11 +1,15 @@
-package com.example.vehicledata;
+package com.example.AsyncTasks;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.vehicledata.content.VehicleUtils;
+import com.example.Helper.HttpHandler;
+import com.example.vehicledata.MainActivity;
+import com.example.vehicledata.R;
+import com.example.Helper.Reference;
+import com.example.POJO.VehicleUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +29,7 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
     int modelPosition;
     private WeakReference<MainActivity> activityReference;
     // only retain a weak reference to the activity
-    GetCars(MainActivity context,int makePosition, int modelPosition) {
+    public GetCars(MainActivity context, int makePosition, int modelPosition) {
         activityReference = new WeakReference<>(context);
         this.makePosition=makePosition;
         this.modelPosition=modelPosition;
@@ -37,7 +41,7 @@ public class GetCars extends AsyncTask<String, Void, JSONArray> {
         // Showing progress dialog
         pDialog = new ProgressDialog(activityReference.get());
         pDialog.setMessage("Please wait...");
-        pDialog.setTitle("List of Cars");
+        pDialog.setTitle("Fetching list of Car Makers");
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setCancelable(false);
         pDialog.show();

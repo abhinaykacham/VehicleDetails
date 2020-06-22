@@ -3,9 +3,7 @@ package com.example.vehicledata;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
@@ -14,10 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.vehicledata.content.VehicleDetailInformation;
+import com.example.POJO.VehicleDetailInformation;
 import com.squareup.picasso.Picasso;
-
-// TODO: Customize data based on the data fetched
 
 /**
  * A simple {@link Fragment} subclass.

@@ -9,7 +9,7 @@ import android.text.style.RelativeSizeSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.vehicledata.content.VehicleDetailInformation;
+import com.example.POJO.VehicleDetailInformation;
 import com.squareup.picasso.Picasso;
 
 /**

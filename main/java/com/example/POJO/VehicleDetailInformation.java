@@ -1,4 +1,4 @@
-package com.example.vehicledata.content;
+package com.example.POJO;
 
 import java.io.Serializable;
 

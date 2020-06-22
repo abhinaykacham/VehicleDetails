@@ -2,7 +2,6 @@ package com.example.vehicledata;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.vehicledata.content.VehicleDetailInformation;
+import com.example.POJO.VehicleDetailInformation;
 import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
@@ -20,13 +19,13 @@ import java.util.List;
 /**
  * This class used to render and provide actions for list of vehicles obtained by selecting make and model
  */
-class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecyclerViewAdapter.ViewHolder>{
+public class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItemRecyclerViewAdapter.ViewHolder>{
 
     List<VehicleDetailInformation> vehiclesList;
     private WeakReference<MainActivity> reference;
     MainActivity activityReference;
     Boolean mTwoPane=false;
-    SimplItemRecyclerViewAdapter(List<VehicleDetailInformation> vehiclesList, WeakReference<MainActivity> context) {
+    public SimplItemRecyclerViewAdapter(List<VehicleDetailInformation> vehiclesList, WeakReference<MainActivity> context) {
         this.vehiclesList=vehiclesList;
         this.reference = context;
         }

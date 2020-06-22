@@ -1,12 +1,15 @@
-package com.example.vehicledata;
+package com.example.AsyncTasks;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.vehicledata.content.VehicleDetailInformation;
+import com.example.Helper.HttpHandler;
+import com.example.vehicledata.MainActivity;
+import com.example.vehicledata.R;
+import com.example.vehicledata.SimplItemRecyclerViewAdapter;
+import com.example.POJO.VehicleDetailInformation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +47,7 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
     private ProgressDialog pDialog;
 
     // only retain a weak reference to the activity
-    GetCarInformation(MainActivity context) {
+    public GetCarInformation(MainActivity context) {
         activityReference = new WeakReference<>(context);
     }
 
@@ -54,7 +57,7 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
         // Showing progress dialog
         pDialog = new ProgressDialog(activityReference.get());
         pDialog.setMessage("Please wait...");
-        pDialog.setTitle("Car Details");
+        pDialog.setTitle("Fetching Car Details");
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setCancelable(false);
         pDialog.show();

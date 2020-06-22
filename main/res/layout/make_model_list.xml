@@ -7,6 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="3dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:focusable="true"
     card_view:cardElevation="5dp">
 
     <LinearLayout
@@ -30,7 +33,6 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:layout_weight="1.25"
-            android:text="Place_holder"
             android:textAlignment="center"
             android:textSize="17sp" />
 
@@ -41,7 +43,6 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            android:text="Place_holder"
             android:textSize="17sp" />
 
     </LinearLayout>

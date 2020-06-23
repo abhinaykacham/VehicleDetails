@@ -1,5 +1,6 @@
 package com.example.vehicledata;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -45,7 +46,7 @@ public class SimplItemRecyclerViewAdapter extends RecyclerView.Adapter<SimplItem
         return new ViewHolder(view);
     }
 
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         //Displaying Vehicle model and Unique ID in the list
         holder.mVehicleItem.setText(vehiclesList.get(position).getmId().toString());
         holder.mModelName.setText(vehiclesList.get(position).getmModel());

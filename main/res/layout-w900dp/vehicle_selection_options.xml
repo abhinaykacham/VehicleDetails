@@ -51,5 +51,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:context="com.example.vehicledata.MainActivity"
-        tools:listitem="@layout/make_model_list"></android.support.v7.widget.RecyclerView>
+        tools:listitem="@layout/make_model_list" />
 </android.support.constraint.ConstraintLayout>

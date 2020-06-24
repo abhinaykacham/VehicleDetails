@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         modelPosition=mModel.getSelectedItemPosition();
         outState.putInt(MAKE_POSITION,makePosition);
         outState.putInt(MODEL_POSITION,modelPosition);
+        modelPosition=0;
     }
 
     @Override
@@ -82,9 +83,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        modelPosition=0;
-    }
 }

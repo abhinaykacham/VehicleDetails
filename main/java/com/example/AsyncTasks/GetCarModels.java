@@ -90,14 +90,12 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(modelPosition);
 
-        String makeId = ((VehicleModel)spinner.getSelectedItem()).getMakeId().toString();
-        String modelId = ((VehicleModel)spinner.getSelectedItem()).getModelId().toString();
         String vehicleInfoURL= Reference.CAR_DETAIL_INFO_URL+((VehicleModel)spinner.getSelectedItem()).getMakeId().toString()
                 +"/"
                 +((VehicleModel)spinner.getSelectedItem()).getModelId().toString()
                 +"/92603";
 
-        new GetCarInformation(activity).execute(vehicleInfoURL,Reference.CAR_UPDATED_DETAIL_INFO_URL,makeId,modelId);
+        new GetCarInformation(activity).execute(vehicleInfoURL,Reference.CAR_UPDATED_DETAIL_INFO_URL);
 
     }
 

@@ -18,3 +18,13 @@ When the user chooses an Item from Spinners' respective models and list of cars 
 
 	After selecting a car from the list, Make-Model, Price of car, Vehicle description, Image(If available and placeholder if Image is not available), and Last updated date are displayed.
 The above implementations are available in both Mobile and Tablets with the facility to save the previous state when the user changes from Landscape and Portrait mode.
+
+Contribution
+We divided the work load as follows: 
+1. Mobile UI and Vehicle Activity Development(Abhinay)
+2. Tablet UI and Fragment Development(Dinesh)
+3. GetModelDetails, GetCars Async Task developed by Abhinay
+4. GetCarInformation Async Task developed by Dinesh
+5. Saved Instance of activity (Abhinay)
+6. CardView RecyclerView Design (Dinesh)
+

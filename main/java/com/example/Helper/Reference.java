@@ -1,5 +1,7 @@
 package com.example.Helper;
 
+import com.example.POJO.VehicleDetailInformation;
+
 public class Reference {
     /**
      * To give Spinner a default state below Integer is used.
@@ -21,4 +23,6 @@ public class Reference {
      * URL to fetch updated details of a car by concatenating Unique Car ID at the end of below URL
      */
     public static final String CAR_UPDATED_DETAIL_INFO_URL="https://thawing-beach-68207.herokuapp.com/cars/";
+
+    public static VehicleDetailInformation sVehicleDetailInformation;
 }

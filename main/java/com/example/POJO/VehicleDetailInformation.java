@@ -14,10 +14,8 @@ public class VehicleDetailInformation implements Serializable {
     String mVehicleDesc;
     String mPrice;
     String mUpdateDate;
-    Integer mMakeId;
-    Integer mModelId;
 
-    public VehicleDetailInformation(Integer id,String make,String model, String imageUrl, String vehicleDesc, String price, String updateDate,Integer makeId,Integer modelId) {
+    public VehicleDetailInformation(Integer id,String make,String model, String imageUrl, String vehicleDesc, String price, String updateDate) {
         mId=id;
         mMake=make;
         mModel=model;
@@ -25,26 +23,7 @@ public class VehicleDetailInformation implements Serializable {
         mVehicleDesc = vehicleDesc;
         mPrice = price;
         mUpdateDate = updateDate;
-        mMakeId = makeId;
-        mModelId = modelId;
     }
-
-    public Integer getMakeId() {
-        return mMakeId;
-    }
-
-    public void setMakeId(Integer makeId) {
-        mMakeId = makeId;
-    }
-
-    public Integer getModelId() {
-        return mModelId;
-    }
-
-    public void setModelId(Integer modelId) {
-        mModelId = modelId;
-    }
-
 
     public Integer getmId() {
         return mId;

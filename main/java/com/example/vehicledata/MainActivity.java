@@ -10,7 +10,6 @@ import com.example.AsyncTasks.GetCarInformation;
 import com.example.AsyncTasks.GetCarModels;
 import com.example.AsyncTasks.GetCars;
 import com.example.Helper.Reference;
-import com.example.POJO.VehicleDetailInformation;
 import com.example.POJO.VehicleModel;
 import com.example.POJO.VehicleUtils;
 
@@ -42,11 +41,6 @@ public class MainActivity extends AppCompatActivity {
             modelPosition=savedInstanceState.getInt(MODEL_POSITION);
         }
 
-        if(Reference.sVehicleDetailInformation!=null){
-            makePosition=Reference.sVehicleDetailInformation.getMakeId();
-            modelPosition=Reference.sVehicleDetailInformation.getModelId();
-        }
-
         mModel=findViewById(R.id.m_spinner_model);
         mMake=findViewById(R.id.m_spinner_make);
         new GetCars(this,makePosition,modelPosition).execute(Reference.CAR_MAKE_URL);
@@ -74,10 +68,9 @@ public class MainActivity extends AppCompatActivity {
                         +"/"
                         +((VehicleModel)mModel.getSelectedItem()).getModelId().toString()
                         +"/92603";
-                String makeId = ((VehicleModel)mModel.getSelectedItem()).getMakeId().toString();
-                String modelId = ((VehicleModel)mModel.getSelectedItem()).getModelId().toString();
+
                 new GetCarInformation((MainActivity)parent.getContext())
-                    .execute(vehicleInfoURL, Reference.CAR_UPDATED_DETAIL_INFO_URL,makeId,modelId);
+                    .execute(vehicleInfoURL, Reference.CAR_UPDATED_DETAIL_INFO_URL);
                 mFragmentById = (VehicleDetailsFragment)getSupportFragmentManager().findFragmentById(R.id.vehicle_detail_container);
                 if(mFragmentById!=null)
                 getSupportFragmentManager().beginTransaction().remove(mFragmentById).commit();

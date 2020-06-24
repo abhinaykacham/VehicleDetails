@@ -1,8 +1,5 @@
 package com.example.vehicledata;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,9 +8,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.Helper.Reference;
 import com.example.POJO.VehicleDetailInformation;
 import com.squareup.picasso.Picasso;
 
@@ -32,7 +27,7 @@ public class VehicleDetailsActivity extends AppCompatActivity {
     SpannableString vehicleFormatter;
     String vehicleDescriptionLabel;
     String vehicleLastUpdateLabel;
-    VehicleDetailInformation vehicleDetailInformation;
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -42,18 +37,6 @@ public class VehicleDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState == null) {
-            vehicleDetailInformation =
-                    (VehicleDetailInformation) getIntent().getSerializableExtra("VEHICLE_INFO");
-        } else {
-            if(isTablet(getApplicationContext())) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Reference.sVehicleDetailInformation= vehicleDetailInformation;
-                getApplicationContext().startActivity(intent);
-            } else {
-                vehicleDetailInformation = (VehicleDetailInformation) savedInstanceState.getSerializable(SAVED_OBJECT);
-            }
-        }
         setContentView(R.layout.activity_vehicle_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         description = findViewById(R.id.m_txt_vehicle_details_description);
@@ -61,6 +44,14 @@ public class VehicleDetailsActivity extends AppCompatActivity {
         price = findViewById(R.id.m_txt_vehicle_details_price);
         updatedDate = findViewById(R.id.m_txt_vehicle_details_updated_date);
         vehicleImage = findViewById(R.id.m_vehicle_details_image);
+        VehicleDetailInformation vehicleDetailInformation;
+        if (savedInstanceState == null) {
+            vehicleDetailInformation =
+                    (VehicleDetailInformation) getIntent().getSerializableExtra("VEHICLE_INFO");
+        } else {
+            vehicleDetailInformation = (VehicleDetailInformation) savedInstanceState.getSerializable(SAVED_OBJECT);
+        }
+
         vehicleDescriptionLabel = getString(R.string.vehicle_description_label);
         vehicleFormatter = new SpannableString(vehicleDescriptionLabel + vehicleDetailInformation.getVehicleDesc());
         vehicleFormatter.setSpan(new RelativeSizeSpan(1.6f), 0, 21, 0); // set size
@@ -93,11 +84,4 @@ public class VehicleDetailsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
-    public boolean isTablet(Context context) {
-        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
-        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
-        return (xlarge || large);
-    }
-
 }

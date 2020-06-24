@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.Helper.HttpHandler;
+import com.example.Helper.Reference;
 import com.example.vehicledata.MainActivity;
 import com.example.vehicledata.R;
 import com.example.vehicledata.SimplItemRecyclerViewAdapter;
 import com.example.POJO.VehicleDetailInformation;
+import com.example.vehicledata.VehicleDetailsFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +80,8 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
         decimalFormat=new DecimalFormat(decimalFormatSymbols.getCurrencySymbol()+"###,###,###,###.##",decimalFormatSymbols);
         // Making a request to url and getting response
         JSONResponse = httpHandler.makeServiceCall(args[0]);
+        Integer makeId= Integer.parseInt(args[2]);
+        Integer modelId= Integer.parseInt(args[3]);
         if (JSONResponse != null) {
             try {
                 JSONObject jsonObj = new JSONObject(JSONResponse);
@@ -101,7 +105,7 @@ public class GetCarInformation extends AsyncTask<String, Void, ArrayList<Vehicle
                 String imageURL = vehicleObject.getString("image_url");
                 String veh_desc = vehicleObject.getString("veh_description");
                 String price = decimalFormat.format(Double.parseDouble(vehicleObject.getString("price")));
-                vehicleDetailInformationArrayList.add(new VehicleDetailInformation(id, make, model, imageURL, veh_desc, price, ""));
+                vehicleDetailInformationArrayList.add(new VehicleDetailInformation(id, make, model, imageURL, veh_desc, price, "",makeId,modelId));
             } catch (JSONException e) {
                 Log.e(TAG,e.getMessage());
             }

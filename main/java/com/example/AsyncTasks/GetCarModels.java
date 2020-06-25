@@ -88,6 +88,9 @@ public class GetCarModels extends AsyncTask<String, Void, JSONArray> {
         ArrayAdapter<VehicleModel> arrayAdapter = new ArrayAdapter<>(activity,android.R.layout.simple_spinner_dropdown_item, vehicleModelArrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+        if(result.length()-1<modelPosition)
+            modelPosition=0;
+
         spinner.setSelection(modelPosition);
 
         String vehicleInfoURL= Reference.CAR_DETAIL_INFO_URL+((VehicleModel)spinner.getSelectedItem()).getMakeId().toString()
